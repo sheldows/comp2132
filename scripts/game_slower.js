@@ -7,9 +7,10 @@ Final Project
 
 
 let raf = window.requestAnimationFrame;
+let makeStepHandler = undefined;
 let makeStep = function (delay, frames,rollframes,totalframes) {
     return new Promise(function (resolve) {
-        raf(timeout=>{_makeStep(timeout, delay, frames,rollframes,totalframes, resolve)});
+        makeStepHandler= raf(timeout=>{_makeStep(timeout, delay, frames,rollframes,totalframes, resolve)});
     });
 };
 
@@ -335,6 +336,10 @@ class game{
         }
         //score.forEach(scoret=>{scoret.className="score"});
         //totalscore.forEach(totalscore=>{totalscore.className="totalscore"});
+
+        //end animation
+        state = false;
+        window.cancelAnimationFrame(makeStepHandler);
 
     }
     playGame() {
@@ -753,7 +758,7 @@ function _makeStep(timeout, delay, frames,rollframes,totalframes, resolve) {
         startDice = timeout;
     }
 
-    state = true;
+    //state = true;
 
     timeSpan = Math.floor(timeout - startDice);
 
@@ -808,7 +813,7 @@ function _makeStep(timeout, delay, frames,rollframes,totalframes, resolve) {
 
     if (state) {
         //window.requestAnimationFrame(diceAnimate);
-        raf(timeout=>{_makeStep(timeout, delay, frames,rollframes,totalframes, resolve)});
+        makeStepHandler=raf(timeout=>{_makeStep(timeout, delay, frames,rollframes,totalframes, resolve)});
     } else {
         resolve(state);
     }
