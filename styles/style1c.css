@@ -75,6 +75,18 @@ Final Project
   color: orange;
 }
 
+h2.winner {
+  color: chartreuse;
+}
+
+h2.looser {
+  color: red;
+}
+
+h2.tie {
+  color: orange;
+}
+
 .player > div.winner {
   background-color: chartreuse;
 }

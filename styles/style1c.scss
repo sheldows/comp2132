@@ -97,6 +97,16 @@ $tie: orange;
     color: $tie;
 }
 
+h2.winner {
+    color: $winner;
+}
+h2.looser {
+    color: $looser;
+}
+h2.tie {
+    color: $tie;
+}
+
 .player>div.winner {
     background-color: $winner;
 }

@@ -84,7 +84,7 @@ let timer1 = setTimeout( function(){
 
 let popupInit = false;
 
-function showPopup(message = undefined,header = undefined) {
+function showPopup(message = undefined,header = undefined,className=undefined) {
     
 
     let popupAlertClose = document.getElementById("btn-close");
@@ -115,8 +115,12 @@ function showPopup(message = undefined,header = undefined) {
         message.forEach(text => {
             messageList.push(`<p>${text}</p>`);
         });
-        
+
+        if (className == undefined) {
         popupAlert.innerHTML = `<h2>${header}</h2><button id="btn-close">&#10005;</button>${messageList.join("")}`;
+        } else {
+            popupAlert.innerHTML = `<h2 class='${className}'>${header}</h2><button id="btn-close">&#10005;</button>${messageList.join("")}`;
+        }
     }
 
     popupAlert.className = "show";
@@ -606,7 +610,8 @@ class game{
                         document.getElementById("results").innerHTML = `<p class="centre">Game Over, try again. Its a Tie!</P>`;
                     }
 
-                    
+                    //add popup
+                    showPopup(`${document.getElementById("results").innerHTML}<p class='centre'>Click 'Reset Game' to try again</p>`,`Game Results: ${document.getElementById("results").className}`,document.getElementById("results").className);
 
                     //document.getElementById("start").disabled = true;
 
